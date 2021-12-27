@@ -1,0 +1,34 @@
+﻿<Properties StartupConfiguration="{1A4E9FBC-00A5-4DD6-BFAC-9F3123AEB068}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Product/Index.cshtml">
+    <Files>
+      <File FileName="Web.config" Line="22" Column="40" />
+      <File FileName="Controllers/ProductController.cs" Line="45" Column="10" />
+      <File FileName="AccessToken/AccessToken.cs" Line="1" Column="1" />
+      <File FileName="Views/Product/Index.cshtml" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ScanLoginDemo" expanded="True">
+            <Node name="ScanLoginDemo" expanded="True">
+              <Node name="AccessToken" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Product" expanded="True">
+                  <Node name="Index.cshtml" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.ScanLoginDemo PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

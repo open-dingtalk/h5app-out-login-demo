@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>钉钉扫码登录第三方网站</title>
+    <script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.13.42/dingtalk.open.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <ul class="list-group">
+        <li class="list-group-item text-center">姓名：<em id="name"></em></li>
+        <li class="list-group-item text-center">UserId：<em id="userid"></em></li>
+    </ul>
+
+    <script type="text/javascript">
+
+        // 获取地址栏参数
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        /* 根据地址栏参数中的code参数判断
+         * code为null则说明是第一次进入此页面
+         * code有值说明是扫码登录后重定向过来的
+         */
+        if (GetQueryString("code") == null) {
+            // 获取配置中的AppKey
+            $.ajax({
+                type: "get",
+                url: "/Product/getAppKey",
+                success: function (appKey) {
+
+                    // 获取配置中的扫码登录重定向地址
+                    $.ajax({
+                        type: "get",
+                        url: "/Product/getLoginUrl",
+                        success: function (loginUrl) {
+                            // 跳转至钉钉扫码登录页面
+                            window.location.href = "https://oapi.dingtalk.com/connect/qrconnect?appid=" + appKey + "&response_type=code&scope=snsapi_login&state=STATE&redirect_uri=" + encodeURI(loginUrl);
+                        },
+                        error: function () { }
+                    })
+                },
+                error: function () { }
+            })
+        }
+        else {
+            // 扫码登录完成，重定向到此页面后，用地址栏中的code值获取用户信息
+            $.ajax({
+                type: "get",
+                url: "/Product/getUserByCode",
+                data: { code: GetQueryString("code") },
+                dataType: "json",
+                success: function (data) {
+                    $("#name").html(data.name);
+                    $("#userid").html(data.userId);
+                },
+                error: function () { }
+            })
+        }
+    </script>
+</body>
+</html>
